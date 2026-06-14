@@ -10,11 +10,11 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0f;
-      --bg2: #111118;
-      --bg3: #1a1a24;
-      --card: #16161f;
-      --border: #2a2a38;
+      --bg: #080810;
+      --bg2: #0f0f1a;
+      --bg3: #17172a;
+      --card: #131320;
+      --border: #232338;
       --accent: #6366f1;
       --accent2: #818cf8;
       --accent3: #a5b4fc;
@@ -22,9 +22,9 @@
       --danger: #ef4444;
       --text: #f1f5f9;
       --text2: #94a3b8;
-      --text3: #64748b;
-      --radius: 12px;
-      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --text3: #4a5568;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.5);
     }
 
     html { scroll-behavior: smooth; }
@@ -40,14 +40,14 @@
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem;
+      padding: 0 2.5rem;
       height: 64px;
-      background: rgba(10,10,15,0.85);
-      backdrop-filter: blur(20px);
+      background: rgba(8,8,16,0.9);
+      backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
-      font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px;
+      font-size: 1.25rem; font-weight: 800; letter-spacing: 0.12em;
       background: linear-gradient(135deg, var(--accent2), var(--accent3));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       text-decoration: none;
@@ -55,19 +55,19 @@
     .nav-center { display: flex; gap: 0.25rem; }
     .nav-center button {
       background: none; border: none; color: var(--text2);
-      font: inherit; font-size: 0.9rem; padding: 0.4rem 0.9rem;
+      font: inherit; font-size: 0.875rem; padding: 0.4rem 0.9rem;
       border-radius: 8px; cursor: pointer; transition: all 0.2s;
     }
-    .nav-center button:hover, .nav-center button.active {
-      background: var(--bg3); color: var(--text);
-    }
-    .nav-center button.active { color: var(--accent3); }
+    .nav-center button:hover { background: var(--bg3); color: var(--text); }
+    .nav-center button.active { background: var(--bg3); color: var(--accent3); }
     .nav-right { display: flex; align-items: center; gap: 0.75rem; }
     .search-box {
       display: flex; align-items: center; gap: 0.5rem;
       background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 8px; padding: 0.4rem 0.75rem;
+      border-radius: 8px; padding: 0.45rem 0.85rem;
+      color: var(--text3); transition: border-color 0.2s;
     }
+    .search-box:focus-within { border-color: var(--accent); color: var(--accent3); }
     .search-box input {
       background: none; border: none; outline: none;
       color: var(--text); font: inherit; font-size: 0.875rem; width: 160px;
@@ -76,7 +76,7 @@
     .cart-btn {
       position: relative; background: var(--bg3);
       border: 1px solid var(--border); border-radius: 8px;
-      padding: 0.4rem 0.75rem; cursor: pointer; color: var(--text);
+      padding: 0.45rem 1rem; cursor: pointer; color: var(--text2);
       display: flex; align-items: center; gap: 0.5rem;
       font: inherit; font-size: 0.875rem; transition: all 0.2s;
     }
@@ -84,169 +84,201 @@
     .cart-badge {
       position: absolute; top: -6px; right: -6px;
       background: var(--accent); color: white;
-      font-size: 0.65rem; font-weight: 700;
-      width: 18px; height: 18px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      display: none;
+      font-size: 0.6rem; font-weight: 700;
+      width: 17px; height: 17px; border-radius: 50%;
+      display: none; align-items: center; justify-content: center;
     }
     .cart-badge.visible { display: flex; }
 
     /* ── HERO ── */
     .hero {
       position: relative; overflow: hidden;
-      padding: 5rem 2rem 4rem;
+      padding: 5.5rem 2rem 4.5rem;
       text-align: center;
-      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99,102,241,0.15), transparent);
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 0%, rgba(99,102,241,0.14), transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 40%, rgba(192,132,252,0.07), transparent 60%);
+      pointer-events: none;
     }
     .hero-tag {
-      display: inline-block; background: rgba(99,102,241,0.15);
-      border: 1px solid rgba(99,102,241,0.3);
-      color: var(--accent3); font-size: 0.78rem; font-weight: 600;
-      padding: 0.35rem 0.9rem; border-radius: 100px;
-      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25);
+      color: var(--accent3); font-size: 0.75rem; font-weight: 600;
+      padding: 0.35rem 1rem; border-radius: 100px;
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.75rem;
     }
+    .hero-tag span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); }
     .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      font-weight: 800; line-height: 1.1;
-      letter-spacing: -1.5px; margin-bottom: 1.2rem;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 800; line-height: 1.08;
+      letter-spacing: -2px; margin-bottom: 1.25rem;
     }
-    .hero h1 span {
+    .hero h1 em {
+      font-style: normal;
       background: linear-gradient(135deg, var(--accent2) 0%, #c084fc 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .hero p {
-      color: var(--text2); font-size: 1.1rem; max-width: 500px;
-      margin: 0 auto 2rem; line-height: 1.6;
+      color: var(--text2); font-size: 1.05rem; max-width: 460px;
+      margin: 0 auto 2.25rem; line-height: 1.65; font-weight: 400;
     }
     .hero-cta {
-      display: inline-flex; align-items: center; gap: 0.5rem;
+      display: inline-flex; align-items: center; gap: 0.6rem;
       background: var(--accent); color: white;
       font: inherit; font-size: 0.95rem; font-weight: 600;
-      padding: 0.75rem 1.75rem; border-radius: 10px;
+      padding: 0.8rem 2rem; border-radius: 10px;
       border: none; cursor: pointer; transition: all 0.2s;
-      text-decoration: none;
+      text-decoration: none; letter-spacing: -0.01em;
     }
-    .hero-cta:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(99,102,241,0.35); }
+    .hero-cta:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 10px 32px rgba(99,102,241,0.4); }
 
     /* ── STATS BAR ── */
     .stats-bar {
-      display: flex; justify-content: center; gap: 3rem;
-      padding: 1.5rem 2rem;
+      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       background: var(--bg2);
     }
-    .stat { text-align: center; }
-    .stat-num { font-size: 1.5rem; font-weight: 800; color: var(--accent3); }
-    .stat-label { font-size: 0.78rem; color: var(--text3); margin-top: 2px; }
+    .stat {
+      text-align: center; padding: 1.4rem 3rem;
+      position: relative;
+    }
+    .stat + .stat::before {
+      content: ''; position: absolute; left: 0; top: 25%; bottom: 25%;
+      width: 1px; background: var(--border);
+    }
+    .stat-num { font-size: 1.45rem; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+    .stat-label { font-size: 0.72rem; color: var(--text3); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.04em; }
 
-    /* ── FILTERS ── */
-    .section { padding: 3rem 2rem; max-width: 1280px; margin: 0 auto; }
+    /* ── SECTION ── */
+    .section { padding: 3.5rem 2.5rem; max-width: 1300px; margin: 0 auto; }
     .section-header {
       display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+      margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;
     }
-    .section-title {
-      font-size: 1.35rem; font-weight: 700; letter-spacing: -0.5px;
-    }
-    .filters {
-      display: flex; gap: 0.5rem; flex-wrap: wrap;
-    }
+    .section-title { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; }
+    .filters { display: flex; gap: 0.4rem; flex-wrap: wrap; }
     .filter-btn {
       background: var(--bg3); border: 1px solid var(--border);
-      color: var(--text2); font: inherit; font-size: 0.82rem; font-weight: 500;
-      padding: 0.4rem 1rem; border-radius: 100px; cursor: pointer;
-      transition: all 0.2s;
+      color: var(--text2); font: inherit; font-size: 0.8rem; font-weight: 500;
+      padding: 0.4rem 1rem; border-radius: 100px; cursor: pointer; transition: all 0.2s;
     }
     .filter-btn:hover { color: var(--text); border-color: var(--text3); }
     .filter-btn.active {
-      background: rgba(99,102,241,0.15); border-color: var(--accent);
+      background: rgba(99,102,241,0.12); border-color: rgba(99,102,241,0.5);
       color: var(--accent3);
     }
     .sort-select {
       background: var(--bg3); border: 1px solid var(--border);
-      color: var(--text2); font: inherit; font-size: 0.82rem;
-      padding: 0.4rem 0.75rem; border-radius: 8px; cursor: pointer; outline: none;
+      color: var(--text2); font: inherit; font-size: 0.8rem;
+      padding: 0.4rem 0.85rem; border-radius: 8px; cursor: pointer; outline: none;
     }
     .sort-select option { background: var(--bg3); }
+
+    /* ── FEATURED BANNER ── */
+    .featured-banner {
+      background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(192,132,252,0.06) 100%);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 16px; padding: 2rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap;
+    }
+    .featured-text h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; letter-spacing: -0.5px; }
+    .featured-text p { color: var(--text2); font-size: 0.9rem; line-height: 1.5; }
+    .featured-badge {
+      display: inline-block; background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.3); color: #f87171;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 6px;
+      margin-bottom: 0.6rem;
+    }
+    .featured-icon {
+      flex-shrink: 0; opacity: 0.9;
+    }
 
     /* ── PRODUCT GRID ── */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
       gap: 1.25rem;
     }
     .product-card {
       background: var(--card); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden;
-      transition: all 0.25s; cursor: pointer; position: relative;
+      transition: border-color 0.25s, box-shadow 0.25s; cursor: pointer; position: relative;
     }
     .product-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(99,102,241,0.15);
+      border-color: rgba(99,102,241,0.45);
+      box-shadow: 0 0 0 1px rgba(99,102,241,0.12), 0 16px 40px rgba(0,0,0,0.45);
     }
     .product-img {
-      width: 100%; height: 200px;
+      width: 100%; height: 210px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 5rem; background: var(--bg3);
       position: relative; overflow: hidden;
     }
-    .product-badge {
-      position: absolute; top: 10px; left: 10px;
-      font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.6rem;
-      border-radius: 6px; text-transform: uppercase; letter-spacing: 0.04em;
+    .product-img-svg {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%; padding: 28px;
     }
-    .badge-new { background: rgba(34,197,94,0.2); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
-    .badge-sale { background: rgba(239,68,68,0.2); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
-    .badge-hot { background: rgba(251,146,60,0.2); color: #fb923c; border: 1px solid rgba(251,146,60,0.3); }
+    .product-img-svg svg { width: 140px; height: 140px; flex-shrink: 0; }
+    .product-badge {
+      position: absolute; top: 12px; left: 12px;
+      font-size: 0.65rem; font-weight: 700; padding: 0.22rem 0.6rem;
+      border-radius: 6px; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .badge-new { background: rgba(34,197,94,0.18); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+    .badge-sale { background: rgba(239,68,68,0.18); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+    .badge-hot { background: rgba(251,146,60,0.18); color: #fb923c; border: 1px solid rgba(251,146,60,0.3); }
     .wishlist-btn {
-      position: absolute; top: 10px; right: 10px;
-      background: rgba(0,0,0,0.5); border: 1px solid var(--border);
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(8,8,16,0.65); border: 1px solid rgba(255,255,255,0.1);
       color: var(--text3); width: 32px; height: 32px;
       border-radius: 8px; cursor: pointer; display: flex;
       align-items: center; justify-content: center;
-      font-size: 1rem; transition: all 0.2s; z-index: 1;
+      transition: all 0.2s; z-index: 1; backdrop-filter: blur(4px);
     }
-    .wishlist-btn:hover, .wishlist-btn.active { color: #f87171; border-color: #f87171; }
-    .product-info { padding: 1rem 1.1rem 1.25rem; }
+    .wishlist-btn:hover { border-color: #f87171; color: #f87171; }
+    .wishlist-btn.active { border-color: #f87171; color: #f87171; }
+    .product-info { padding: 1.1rem 1.2rem 1.35rem; }
     .product-cat {
-      font-size: 0.72rem; color: var(--accent3); font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem;
+      font-size: 0.68rem; color: var(--accent3); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem;
     }
     .product-name {
-      font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem;
-      color: var(--text); line-height: 1.3;
+      font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem;
+      color: var(--text); line-height: 1.3; letter-spacing: -0.2px;
     }
     .product-desc {
-      font-size: 0.8rem; color: var(--text3); margin-bottom: 0.75rem;
-      line-height: 1.4; display: -webkit-box;
+      font-size: 0.78rem; color: var(--text3); margin-bottom: 0.8rem;
+      line-height: 1.45; display: -webkit-box;
       -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
-    .product-rating { display: flex; align-items: center; gap: 0.35rem; margin-bottom: 0.75rem; }
-    .stars { color: #facc15; font-size: 0.8rem; letter-spacing: 1px; }
-    .rating-count { font-size: 0.75rem; color: var(--text3); }
+    .product-rating { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.85rem; }
+    .stars { color: #f59e0b; font-size: 0.75rem; letter-spacing: 1px; }
+    .rating-count { font-size: 0.72rem; color: var(--text3); }
     .product-footer { display: flex; align-items: center; justify-content: space-between; }
-    .product-price { display: flex; align-items: baseline; gap: 0.5rem; }
-    .price-current { font-size: 1.1rem; font-weight: 700; color: var(--text); }
-    .price-old {
-      font-size: 0.8rem; color: var(--text3); text-decoration: line-through;
-    }
+    .product-price { display: flex; align-items: baseline; gap: 0.45rem; }
+    .price-current { font-size: 1.1rem; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+    .price-old { font-size: 0.78rem; color: var(--text3); text-decoration: line-through; }
     .add-btn {
       background: var(--accent); color: white; border: none;
-      font: inherit; font-size: 0.82rem; font-weight: 600;
+      font: inherit; font-size: 0.78rem; font-weight: 600;
       padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;
       transition: all 0.2s; display: flex; align-items: center; gap: 0.3rem;
-      white-space: nowrap;
+      white-space: nowrap; letter-spacing: -0.01em;
     }
-    .add-btn:hover { background: var(--accent2); transform: scale(1.03); }
-    .add-btn.added { background: var(--success); }
+    .add-btn:hover { background: var(--accent2); }
+    .add-btn.added { background: rgba(34,197,94,0.2); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
 
     /* ── CART DRAWER ── */
     .cart-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      position: fixed; inset: 0; background: rgba(0,0,0,0.65);
       z-index: 200; opacity: 0; pointer-events: none;
-      transition: opacity 0.3s; backdrop-filter: blur(4px);
+      transition: opacity 0.3s; backdrop-filter: blur(6px);
     }
     .cart-overlay.open { opacity: 1; pointer-events: all; }
     .cart-drawer {
@@ -259,37 +291,40 @@
     .cart-drawer.open { transform: translateX(0); }
     .cart-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.25rem 1.5rem;
+      padding: 1.35rem 1.5rem;
       border-bottom: 1px solid var(--border);
     }
-    .cart-header h2 { font-size: 1.1rem; font-weight: 700; }
+    .cart-header h2 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.3px; }
     .close-btn {
       background: var(--bg3); border: 1px solid var(--border);
-      color: var(--text); width: 32px; height: 32px;
-      border-radius: 8px; cursor: pointer; font-size: 1rem;
+      color: var(--text2); width: 32px; height: 32px;
+      border-radius: 8px; cursor: pointer; font-size: 0.85rem;
       display: flex; align-items: center; justify-content: center;
       transition: all 0.2s;
     }
     .close-btn:hover { border-color: var(--danger); color: var(--danger); }
     .cart-body { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
-    .cart-empty {
-      text-align: center; padding: 3rem 0; color: var(--text3);
-    }
-    .cart-empty .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
-    .cart-empty p { font-size: 0.9rem; }
+    .cart-empty { text-align: center; padding: 3.5rem 0; color: var(--text3); }
+    .cart-empty-icon { margin: 0 auto 1.25rem; display: flex; align-items: center; justify-content: center; }
+    .cart-empty p { font-size: 0.875rem; color: var(--text3); }
     .cart-item {
       display: flex; gap: 1rem; padding: 1rem 0;
       border-bottom: 1px solid var(--border); align-items: flex-start;
     }
     .cart-item:last-child { border-bottom: none; }
     .cart-item-img {
-      width: 64px; height: 64px; background: var(--bg3);
-      border-radius: 8px; display: flex; align-items: center;
-      justify-content: center; font-size: 2rem; flex-shrink: 0;
+      width: 64px; height: 64px;
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; overflow: hidden;
     }
+    .cart-item-img-svg {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%; padding: 8px;
+    }
+    .cart-item-img-svg svg { width: 40px; height: 40px; }
     .cart-item-info { flex: 1; }
-    .cart-item-name { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .cart-item-cat { font-size: 0.72rem; color: var(--accent3); margin-bottom: 0.5rem; }
+    .cart-item-name { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .cart-item-cat { font-size: 0.68rem; color: var(--accent3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.55rem; }
     .cart-item-controls { display: flex; align-items: center; gap: 0.5rem; }
     .qty-btn {
       background: var(--bg3); border: 1px solid var(--border);
@@ -299,165 +334,143 @@
       transition: all 0.15s;
     }
     .qty-btn:hover { border-color: var(--accent); color: var(--accent3); }
-    .qty-num { font-size: 0.875rem; font-weight: 600; min-width: 20px; text-align: center; }
+    .qty-num { font-size: 0.85rem; font-weight: 600; min-width: 20px; text-align: center; }
     .cart-item-remove {
       background: none; border: none; color: var(--text3);
-      cursor: pointer; font-size: 0.8rem; padding: 0.25rem 0.5rem;
+      cursor: pointer; padding: 0.25rem 0.4rem;
       border-radius: 6px; transition: all 0.15s; margin-left: auto;
+      display: flex; align-items: center; gap: 0.3rem;
+      font: inherit; font-size: 0.75rem;
     }
     .cart-item-remove:hover { color: var(--danger); background: rgba(239,68,68,0.1); }
-    .cart-item-price {
-      font-size: 0.95rem; font-weight: 700; white-space: nowrap;
-      color: var(--text);
-    }
-    .cart-footer {
-      padding: 1.25rem 1.5rem;
-      border-top: 1px solid var(--border);
-    }
+    .cart-item-price { font-size: 0.95rem; font-weight: 700; white-space: nowrap; }
+    .cart-footer { padding: 1.25rem 1.5rem; border-top: 1px solid var(--border); }
     .cart-summary { margin-bottom: 1rem; }
     .summary-row {
       display: flex; justify-content: space-between;
-      font-size: 0.85rem; color: var(--text2); margin-bottom: 0.5rem;
+      font-size: 0.82rem; color: var(--text2); margin-bottom: 0.5rem;
     }
     .summary-row.total {
       font-size: 1rem; font-weight: 700; color: var(--text);
-      padding-top: 0.5rem; border-top: 1px solid var(--border); margin-top: 0.5rem;
+      padding-top: 0.6rem; border-top: 1px solid var(--border); margin-top: 0.6rem;
     }
     .checkout-btn {
       width: 100%; background: var(--accent); color: white;
-      border: none; font: inherit; font-size: 0.95rem; font-weight: 600;
-      padding: 0.85rem; border-radius: 10px; cursor: pointer;
+      border: none; font: inherit; font-size: 0.9rem; font-weight: 600;
+      padding: 0.9rem; border-radius: 10px; cursor: pointer;
       transition: all 0.2s; display: flex; align-items: center;
-      justify-content: center; gap: 0.5rem;
+      justify-content: center; gap: 0.5rem; letter-spacing: -0.01em;
     }
-    .checkout-btn:hover { background: var(--accent2); box-shadow: 0 8px 24px rgba(99,102,241,0.35); }
+    .checkout-btn:hover { background: var(--accent2); box-shadow: 0 8px 28px rgba(99,102,241,0.4); }
 
     /* ── MODAL ── */
     .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+      position: fixed; inset: 0; background: rgba(0,0,0,0.8);
       z-index: 300; display: flex; align-items: center; justify-content: center;
-      padding: 1rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s;
-      backdrop-filter: blur(8px);
+      padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+      backdrop-filter: blur(10px);
     }
     .modal-overlay.open { opacity: 1; pointer-events: all; }
     .modal {
       background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem; width: 100%; max-width: 520px;
+      border-radius: 18px; padding: 2rem; width: 100%; max-width: 520px;
       max-height: 90vh; overflow-y: auto;
-      transform: scale(0.95); transition: transform 0.3s;
+      transform: scale(0.96) translateY(8px); transition: transform 0.3s, opacity 0.3s;
     }
-    .modal-overlay.open .modal { transform: scale(1); }
-    .modal h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .modal-overlay.open .modal { transform: scale(1) translateY(0); }
+    .modal-title {
+      font-size: 1.2rem; font-weight: 800; margin-bottom: 1.5rem;
+      letter-spacing: -0.5px;
+    }
     .form-row { display: flex; gap: 1rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; margin-bottom: 1rem; }
-    .form-label { font-size: 0.8rem; font-weight: 600; color: var(--text2); }
+    .form-label { font-size: 0.75rem; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; }
     .form-input {
       background: var(--bg3); border: 1px solid var(--border);
       color: var(--text); font: inherit; font-size: 0.9rem;
-      padding: 0.65rem 0.9rem; border-radius: 8px; outline: none;
+      padding: 0.7rem 0.9rem; border-radius: 8px; outline: none;
       transition: border-color 0.2s;
     }
     .form-input:focus { border-color: var(--accent); }
     .form-input.error { border-color: var(--danger); }
     .form-input::placeholder { color: var(--text3); }
-    .form-section { font-size: 0.85rem; font-weight: 700; color: var(--text2);
-      margin: 1.25rem 0 0.75rem; padding-bottom: 0.4rem;
+    .form-section {
+      font-size: 0.75rem; font-weight: 700; color: var(--text3);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin: 1.35rem 0 0.85rem; padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--border);
     }
     .order-summary {
-      background: var(--bg3); border-radius: 10px; padding: 1rem;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.1rem;
       margin-bottom: 1.5rem;
     }
-    .os-title { font-size: 0.8rem; font-weight: 700; color: var(--text2); margin-bottom: 0.6rem; }
-    .os-item { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.3rem; color: var(--text2); }
-    .os-total { display: flex; justify-content: space-between; font-size: 0.95rem; font-weight: 700; color: var(--text); padding-top: 0.6rem; border-top: 1px solid var(--border); margin-top: 0.6rem; }
-    .modal-actions { display: flex; gap: 0.75rem; }
+    .os-title { font-size: 0.72rem; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.7rem; }
+    .os-item { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.35rem; color: var(--text2); }
+    .os-total { display: flex; justify-content: space-between; font-size: 0.95rem; font-weight: 700; color: var(--text); padding-top: 0.65rem; border-top: 1px solid var(--border); margin-top: 0.65rem; }
+    .modal-actions { display: flex; gap: 0.75rem; margin-top: 0.25rem; }
     .btn-secondary {
       flex: 1; background: var(--bg3); border: 1px solid var(--border);
-      color: var(--text2); font: inherit; font-size: 0.9rem; font-weight: 600;
+      color: var(--text2); font: inherit; font-size: 0.875rem; font-weight: 600;
       padding: 0.75rem; border-radius: 10px; cursor: pointer; transition: all 0.2s;
     }
     .btn-secondary:hover { border-color: var(--text3); color: var(--text); }
     .btn-primary {
       flex: 2; background: var(--accent); color: white;
-      border: none; font: inherit; font-size: 0.9rem; font-weight: 600;
+      border: none; font: inherit; font-size: 0.875rem; font-weight: 600;
       padding: 0.75rem; border-radius: 10px; cursor: pointer; transition: all 0.2s;
     }
     .btn-primary:hover { background: var(--accent2); }
 
     /* ── SUCCESS ── */
-    .success-screen {
-      text-align: center; padding: 1rem 0;
-    }
+    .success-screen { text-align: center; padding: 1rem 0; }
     .success-icon {
       width: 80px; height: 80px;
-      background: rgba(34,197,94,0.15); border: 2px solid rgba(34,197,94,0.4);
+      background: rgba(34,197,94,0.12); border: 1.5px solid rgba(34,197,94,0.35);
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; margin: 0 auto 1.5rem;
+      margin: 0 auto 1.5rem; color: #22c55e;
       animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
     }
-    @keyframes popIn {
-      0% { transform: scale(0); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .success-screen h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-    .success-screen p { color: var(--text2); font-size: 0.9rem; margin-bottom: 0.35rem; }
+    @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .success-screen h2 { font-size: 1.45rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+    .success-screen p { color: var(--text2); font-size: 0.875rem; margin-bottom: 0.35rem; }
     .order-id {
-      display: inline-block;
-      font-family: 'JetBrains Mono', monospace;
+      display: inline-block; font-family: 'JetBrains Mono', monospace;
       background: var(--bg3); border: 1px solid var(--border);
-      padding: 0.3rem 0.75rem; border-radius: 6px;
-      font-size: 0.8rem; color: var(--accent3);
-      margin: 0.75rem 0 1.5rem;
+      padding: 0.35rem 0.85rem; border-radius: 6px;
+      font-size: 0.8rem; color: var(--accent3); margin: 0.85rem 0 1.75rem;
     }
 
-    /* ── PRODUCT DETAIL MODAL ── */
+    /* ── PRODUCT DETAIL ── */
     .detail-modal { max-width: 640px; }
     .detail-img {
       width: 100%; height: 240px;
-      background: var(--bg3); border-radius: 10px;
+      border-radius: 12px; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
-      font-size: 6rem; margin-bottom: 1.25rem;
+      margin-bottom: 1.35rem;
     }
-    .detail-cat { font-size: 0.75rem; color: var(--accent3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
-    .detail-name { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.75rem; }
-    .detail-desc { color: var(--text2); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
-    .detail-specs {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0.5rem; margin-bottom: 1.25rem;
+    .detail-img-svg {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%;
     }
-    .spec-item {
-      background: var(--bg3); border-radius: 8px;
-      padding: 0.6rem 0.8rem; font-size: 0.78rem;
-    }
-    .spec-label { color: var(--text3); margin-bottom: 0.2rem; }
+    .detail-img-svg svg { width: 160px; height: 160px; }
+    .detail-cat { font-size: 0.72rem; color: var(--accent3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+    .detail-name { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 0.75rem; }
+    .detail-desc { color: var(--text2); font-size: 0.875rem; line-height: 1.65; margin-bottom: 1.1rem; }
+    .detail-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.35rem; }
+    .spec-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 0.65rem 0.85rem; font-size: 0.78rem; }
+    .spec-label { color: var(--text3); margin-bottom: 0.2rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; }
     .spec-value { color: var(--text); font-weight: 600; }
-    .detail-footer {
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 1rem;
-    }
-    .detail-price { font-size: 1.6rem; font-weight: 800; }
-
-    /* ── FEATURED ── */
-    .featured-banner {
-      background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(192,132,252,0.08));
-      border: 1px solid rgba(99,102,241,0.25);
-      border-radius: 16px; padding: 2rem 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap;
-    }
-    .featured-text h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .featured-text p { color: var(--text2); font-size: 0.9rem; }
-    .featured-icon { font-size: 5rem; flex-shrink: 0; }
+    .detail-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .detail-price { font-size: 1.65rem; font-weight: 800; letter-spacing: -0.8px; }
 
     /* ── FOOTER ── */
     footer {
       text-align: center; padding: 2rem;
-      border-top: 1px solid var(--border); color: var(--text3);
-      font-size: 0.82rem;
+      border-top: 1px solid var(--border); color: var(--text3); font-size: 0.8rem;
     }
     footer a { color: var(--accent3); text-decoration: none; }
+    footer a:hover { color: var(--accent2); }
 
     /* ── TOAST ── */
     .toast-container {
@@ -468,30 +481,30 @@
       background: var(--bg2); border: 1px solid var(--border);
       border-radius: 10px; padding: 0.75rem 1rem;
       display: flex; align-items: center; gap: 0.75rem;
-      font-size: 0.85rem; min-width: 240px;
+      font-size: 0.83rem; min-width: 240px;
       animation: slideUp 0.3s ease; box-shadow: var(--shadow);
     }
-    .toast.success { border-color: rgba(34,197,94,0.4); }
-    .toast.success .toast-icon { color: var(--success); }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .toast.success { border-color: rgba(34,197,94,0.3); }
+    .toast-icon-wrap { color: var(--success); flex-shrink: 0; display: flex; }
+    .toast.warn .toast-icon-wrap { color: #f59e0b; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       nav { padding: 0 1rem; }
       .nav-center { display: none; }
       .search-box { display: none; }
-      .hero { padding: 3rem 1rem 2.5rem; }
-      .section { padding: 2rem 1rem; }
-      .stats-bar { gap: 1.5rem; flex-wrap: wrap; }
+      .hero { padding: 3.5rem 1.25rem 3rem; }
+      .section { padding: 2rem 1.25rem; }
+      .stats-bar { gap: 0; }
+      .stat { padding: 1.2rem 1.5rem; flex: 1; }
       .cart-drawer { width: 100%; }
       .form-row { flex-direction: column; }
+      .featured-banner { padding: 1.5rem; }
     }
 
     /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   </style>
@@ -510,11 +523,12 @@
   </div>
   <div class="nav-right">
     <div class="search-box">
-      <span>🔍</span>
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9.5L12.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       <input type="text" placeholder="Buscar productos..." id="searchInput" oninput="handleSearch()" />
     </div>
     <button class="cart-btn" onclick="openCart()">
-      🛒 Carrito
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M1 1.5H3.2L5.6 11H12.5L14.5 4.5H4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="13.5" r="1.2" fill="currentColor"/><circle cx="11.5" cy="13.5" r="1.2" fill="currentColor"/></svg>
+      Carrito
       <span class="cart-badge" id="cartBadge">0</span>
     </button>
   </div>
@@ -522,29 +536,39 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-tag">✨ Nuevos productos 2025</div>
-  <h1>Tecnología que<br /><span>transforma tu vida</span></h1>
+  <div class="hero-tag"><span></span>Nuevos productos 2025</div>
+  <h1>Tecnología que<br /><em>transforma tu vida</em></h1>
   <p>Descubre los mejores gadgets, dispositivos y accesorios al mejor precio.</p>
-  <a href="#productos" class="hero-cta">Ver productos →</a>
+  <a href="#productos" class="hero-cta">
+    Ver productos
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L8 4M11 7L8 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
 </section>
 
 <!-- STATS -->
 <div class="stats-bar">
-  <div class="stat"><div class="stat-num">+2.400</div><div class="stat-label">Clientes felices</div></div>
+  <div class="stat"><div class="stat-num">+2.400</div><div class="stat-label">Clientes</div></div>
   <div class="stat"><div class="stat-num">48h</div><div class="stat-label">Envío rápido</div></div>
-  <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Valoración media</div></div>
-  <div class="stat"><div class="stat-num">30d</div><div class="stat-label">Devolución gratuita</div></div>
+  <div class="stat"><div class="stat-num">4.9 / 5</div><div class="stat-label">Valoración</div></div>
+  <div class="stat"><div class="stat-num">30 días</div><div class="stat-label">Devolución</div></div>
 </div>
 
 <!-- PRODUCTS -->
 <div class="section" id="productos">
+
   <!-- Featured Banner -->
   <div class="featured-banner">
     <div class="featured-text">
-      <h3>🔥 Oferta Flash — Solo hoy</h3>
-      <p>Hasta un <strong>40% de descuento</strong> en auriculares premium y smartwatches.</p>
+      <div class="featured-badge">Oferta flash · Solo hoy</div>
+      <h3>Hasta 40% de descuento</h3>
+      <p>En auriculares premium y smartwatches. Ofertas disponibles durante 24 horas.</p>
     </div>
-    <div class="featured-icon">⚡</div>
+    <div class="featured-icon">
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M42 8L18 42H36L30 64L54 30H36L42 8Z" stroke="rgba(99,102,241,0.7)" stroke-width="2.5" stroke-linejoin="round" fill="rgba(99,102,241,0.1)"/>
+        <path d="M42 8L18 42H36L30 64L54 30H36L42 8Z" stroke="rgba(165,180,252,0.4)" stroke-width="1" stroke-linejoin="round"/>
+      </svg>
+    </div>
   </div>
 
   <div class="section-header">
@@ -572,25 +596,30 @@
 
 <!-- FOOTER -->
 <footer>
-  <p style="margin-bottom:0.4rem">© 2025 Nexus Store — Diseñado por <a href="#">Alejandro Corral</a></p>
-  <p>Hecho con ❤️ — E-commerce demo portfolio</p>
+  <p style="margin-bottom:0.35rem">© 2025 Nexus Store — Diseñado por <a href="https://alejandrocorral509.github.io/portfolio/" target="_blank">Alejandro Corral</a></p>
+  <p style="color:var(--text3)">E-commerce demo &middot; Portfolio project</p>
 </footer>
 
-<!-- CART OVERLAY & DRAWER -->
+<!-- CART -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-header">
     <h2>Tu carrito</h2>
-    <button class="close-btn" onclick="closeCart()">✕</button>
+    <button class="close-btn" onclick="closeCart()">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
   </div>
   <div class="cart-body" id="cartBody"></div>
   <div class="cart-footer" id="cartFooter" style="display:none">
     <div class="cart-summary">
       <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal">0 €</span></div>
-      <div class="summary-row"><span>Envío</span><span>GRATIS</span></div>
+      <div class="summary-row"><span>Envío</span><span style="color:var(--success)">Gratis</span></div>
       <div class="summary-row total"><span>Total</span><span id="cartTotal">0 €</span></div>
     </div>
-    <button class="checkout-btn" onclick="openCheckout()">Finalizar compra →</button>
+    <button class="checkout-btn" onclick="openCheckout()">
+      Finalizar compra
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L8 4M11 7L8 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
   </div>
 </div>
 
@@ -598,7 +627,7 @@
 <div class="modal-overlay" id="checkoutOverlay">
   <div class="modal" id="checkoutModal">
     <div id="checkoutForm">
-      <h2>🛍️ Finalizar compra</h2>
+      <div class="modal-title">Finalizar compra</div>
       <div class="order-summary" id="orderSummary"></div>
 
       <div class="form-section">Datos personales</div>
@@ -632,7 +661,7 @@
           <input class="form-input" id="city" placeholder="Jerez de la Frontera" />
         </div>
         <div class="form-group">
-          <label class="form-label">CP *</label>
+          <label class="form-label">Código postal *</label>
           <input class="form-input" id="zip" placeholder="11400" maxlength="5" />
         </div>
       </div>
@@ -649,20 +678,23 @@
         </div>
         <div class="form-group">
           <label class="form-label">CVV *</label>
-          <input class="form-input" id="cvv" placeholder="123" maxlength="3" type="password" />
+          <input class="form-input" id="cvv" placeholder="···" maxlength="3" type="password" />
         </div>
       </div>
 
       <div class="modal-actions">
         <button class="btn-secondary" onclick="closeCheckout()">Cancelar</button>
-        <button class="btn-primary" onclick="placeOrder()">Pagar →</button>
+        <button class="btn-primary" onclick="placeOrder()">Confirmar pago</button>
       </div>
     </div>
+
     <div id="checkoutSuccess" style="display:none">
       <div class="success-screen">
-        <div class="success-icon">✅</div>
-        <h2>¡Pedido confirmado!</h2>
-        <p>Gracias por tu compra. Recibirás un email con todos los detalles.</p>
+        <div class="success-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M7 18L14 25L29 11" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2>Pedido confirmado</h2>
+        <p>Gracias por tu compra. Recibirás un email con los detalles.</p>
         <p>Tu número de pedido:</p>
         <div class="order-id" id="orderId"></div>
         <button class="btn-primary" onclick="closeCheckout(); clearCart()" style="width:100%">Volver a la tienda</button>
@@ -682,152 +714,200 @@
 <div class="toast-container" id="toastContainer"></div>
 
 <script>
+  // ── SVG ILLUSTRATIONS ──
+  function getProductSVG(type) {
+    const s = {
+      laptop: `<svg viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="6" width="110" height="68" rx="6" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <rect x="21" y="12" width="98" height="56" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+        <circle cx="70" cy="9.5" r="2" fill="rgba(255,255,255,0.45)"/>
+        <rect x="28" y="22" width="48" height="3" rx="1.5" fill="rgba(255,255,255,0.2)"/>
+        <rect x="28" y="30" width="84" height="2" rx="1" fill="rgba(255,255,255,0.11)"/>
+        <rect x="28" y="37" width="76" height="2" rx="1" fill="rgba(255,255,255,0.11)"/>
+        <rect x="28" y="44" width="80" height="2" rx="1" fill="rgba(255,255,255,0.11)"/>
+        <rect x="28" y="51" width="60" height="2" rx="1" fill="rgba(255,255,255,0.09)"/>
+        <path d="M0 74L140 74" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
+        <path d="M0 74 Q6 90 18 90H122Q134 90 140 74" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="rgba(255,255,255,0.03)"/>
+        <rect x="52" y="78" width="36" height="5" rx="2.5" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
+      </svg>`,
+
+      headphones: `<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 70 C22 32 98 32 98 70" stroke="rgba(255,255,255,0.8)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="22" y1="70" x2="22" y2="80" stroke="rgba(255,255,255,0.65)" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="98" y1="70" x2="98" y2="80" stroke="rgba(255,255,255,0.65)" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="22" cy="84" rx="16" ry="14" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <ellipse cx="98" cy="84" rx="16" ry="14" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <ellipse cx="22" cy="84" rx="10" ry="9" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+        <ellipse cx="98" cy="84" rx="10" ry="9" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+        <circle cx="22" cy="84" r="4.5" fill="rgba(255,255,255,0.18)"/>
+        <circle cx="98" cy="84" r="4.5" fill="rgba(255,255,255,0.18)"/>
+      </svg>`,
+
+      phone: `<svg viewBox="0 0 76 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="4" width="64" height="122" rx="16" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <rect x="11" y="9" width="54" height="112" rx="13" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.17)" stroke-width="1.2"/>
+        <rect x="25" y="14" width="26" height="8" rx="4" fill="rgba(255,255,255,0.22)"/>
+        <line x1="70" y1="38" x2="70" y2="56" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="6" y1="40" x2="6" y2="52" stroke="rgba(255,255,255,0.38)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="6" y1="58" x2="6" y2="70" stroke="rgba(255,255,255,0.38)" stroke-width="2" stroke-linecap="round"/>
+        <rect x="27" y="112" width="22" height="4" rx="2" fill="rgba(255,255,255,0.32)"/>
+      </svg>`,
+
+      'watch-square': `<svg viewBox="0 0 90 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="32" y="4" width="12" height="33" rx="6" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+        <rect x="32" y="93" width="12" height="33" rx="6" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+        <rect x="8" y="36" width="60" height="58" rx="16" stroke="rgba(255,255,255,0.8)" stroke-width="2.2"/>
+        <rect x="14" y="42" width="48" height="46" rx="12" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
+        <line x1="68" y1="50" x2="68" y2="62" stroke="rgba(255,255,255,0.6)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="68" y1="67" x2="68" y2="75" stroke="rgba(255,255,255,0.35)" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="22" y="68" font-size="11" fill="rgba(255,255,255,0.72)" font-family="monospace" letter-spacing="1">10:09</text>
+        <text x="24" y="79" font-size="6.5" fill="rgba(255,255,255,0.32)" font-family="sans-serif">Sáb 14 Jun</text>
+        <line x1="28" y1="84" x2="48" y2="84" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>`,
+
+      console: `<svg viewBox="0 0 140 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="18" width="124" height="54" rx="14" stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="rgba(255,255,255,0.04)"/>
+        <line x1="28" y1="45" x2="82" y2="45" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="28" y1="49" x2="68" y2="49" stroke="rgba(255,255,255,0.15)" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="18" cy="38" r="5.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+        <path d="M18 33.5 L18 36M16 34.8 Q13 36 13 38 Q13 42.5 18 44 Q23 42.5 23 38 Q23 36 20 34.8Z" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" fill="none"/>
+        <line x1="94" y1="26" x2="94" y2="62" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="102" y1="26" x2="102" y2="62" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="110" y1="26" x2="110" y2="62" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="118" y1="26" x2="118" y2="62" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="126" y1="30" x2="126" y2="60" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-linecap="round"/>
+        <rect x="55" y="56" width="10" height="7" rx="2" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+        <rect x="70" y="56" width="10" height="7" rx="2" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
+      </svg>`,
+
+      tablet: `<svg viewBox="0 0 130 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="8" width="118" height="84" rx="10" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <rect x="12" y="14" width="106" height="72" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.17)" stroke-width="1.2"/>
+        <circle cx="65" cy="11" r="2" fill="rgba(255,255,255,0.45)"/>
+        <line x1="124" y1="36" x2="124" y2="64" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round"/>
+        <rect x="23" y="28" width="46" height="3" rx="1.5" fill="rgba(255,255,255,0.2)"/>
+        <rect x="23" y="36" width="84" height="2" rx="1" fill="rgba(255,255,255,0.11)"/>
+        <rect x="23" y="43" width="80" height="2" rx="1" fill="rgba(255,255,255,0.11)"/>
+        <rect x="23" y="50" width="84" height="2" rx="1" fill="rgba(255,255,255,0.11)"/>
+        <rect x="23" y="57" width="66" height="2" rx="1" fill="rgba(255,255,255,0.09)"/>
+        <rect x="23" y="64" width="75" height="2" rx="1" fill="rgba(255,255,255,0.09)"/>
+      </svg>`,
+
+      earbuds: `<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="28" y="18" width="64" height="64" rx="32" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="rgba(255,255,255,0.04)"/>
+        <ellipse cx="42" cy="50" rx="11" ry="14" stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="rgba(255,255,255,0.07)"/>
+        <ellipse cx="78" cy="50" rx="11" ry="14" stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="rgba(255,255,255,0.07)"/>
+        <ellipse cx="42" cy="54" rx="6" ry="7" fill="rgba(255,255,255,0.18)"/>
+        <ellipse cx="78" cy="54" rx="6" ry="7" fill="rgba(255,255,255,0.18)"/>
+        <circle cx="42" cy="37" r="3" stroke="rgba(255,255,255,0.38)" stroke-width="1.2"/>
+        <circle cx="78" cy="37" r="3" stroke="rgba(255,255,255,0.38)" stroke-width="1.2"/>
+        <line x1="54" y1="78" x2="66" y2="78" stroke="rgba(255,255,255,0.28)" stroke-width="2" stroke-linecap="round"/>
+      </svg>`,
+
+      ring: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="42" rx="34" ry="12" stroke="rgba(255,255,255,0.8)" stroke-width="2.2"/>
+        <path d="M16 42 L16 58" stroke="rgba(255,255,255,0.8)" stroke-width="2.2"/>
+        <path d="M84 42 L84 58" stroke="rgba(255,255,255,0.8)" stroke-width="2.2"/>
+        <ellipse cx="50" cy="58" rx="34" ry="12" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+        <ellipse cx="50" cy="42" rx="20" ry="7" stroke="rgba(255,255,255,0.25)" stroke-width="1.2" fill="rgba(0,0,0,0.15)"/>
+        <path d="M30 42 L30 58" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+        <path d="M70 42 L70 58" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+        <ellipse cx="50" cy="58" rx="20" ry="7" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
+        <path d="M24 46 Q50 36 76 46" stroke="rgba(255,255,255,0.25)" stroke-width="1.2" fill="none"/>
+      </svg>`,
+
+      handheld: `<svg viewBox="0 0 140 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 30 Q12 14 28 14 H112 Q128 14 128 30 L128 72 Q128 82 112 82 H28 Q12 82 12 72 Z" stroke="rgba(255,255,255,0.75)" stroke-width="2" fill="rgba(255,255,255,0.04)"/>
+        <rect x="40" y="20" width="60" height="40" rx="5" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" fill="rgba(255,255,255,0.07)"/>
+        <circle cx="27" cy="56" r="9" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
+        <line x1="23.5" y1="56" x2="30.5" y2="56" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="27" y1="52.5" x2="27" y2="59.5" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="113" cy="56" r="9" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
+        <circle cx="109" cy="53" r="2.2" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="113" cy="49" r="2.2" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="117" cy="53" r="2.2" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="113" cy="57" r="2.2" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="28" cy="32" r="7" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+        <circle cx="112" cy="32" r="7" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+      </svg>`,
+
+      headphones2: `<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M25 66 C25 26 95 26 95 66" stroke="rgba(255,255,255,0.8)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M25 66 L25 74" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M95 66 L95 74" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+        <rect x="11" y="66" width="24" height="28" rx="9" stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="rgba(255,255,255,0.05)"/>
+        <rect x="85" y="66" width="24" height="28" rx="9" stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="rgba(255,255,255,0.05)"/>
+        <rect x="15.5" y="70.5" width="15" height="19" rx="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <rect x="89.5" y="70.5" width="15" height="19" rx="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        <line x1="17" y1="84" x2="29" y2="84" stroke="rgba(255,255,255,0.22)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="91" y1="78" x2="103" y2="78" stroke="rgba(255,255,255,0.22)" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>`,
+
+      vr: `<svg viewBox="0 0 140 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="12" y="22" width="116" height="50" rx="18" stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="rgba(255,255,255,0.04)"/>
+        <ellipse cx="44" cy="47" rx="22" ry="20" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" fill="rgba(255,255,255,0.07)"/>
+        <ellipse cx="96" cy="47" rx="22" ry="20" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" fill="rgba(255,255,255,0.07)"/>
+        <ellipse cx="44" cy="47" rx="13" ry="12" fill="rgba(255,255,255,0.13)"/>
+        <ellipse cx="96" cy="47" rx="13" ry="12" fill="rgba(255,255,255,0.13)"/>
+        <ellipse cx="44" cy="47" rx="7" ry="6.5" fill="rgba(255,255,255,0.08)"/>
+        <ellipse cx="96" cy="47" rx="7" ry="6.5" fill="rgba(255,255,255,0.08)"/>
+        <line x1="67" y1="40" x2="73" y2="40" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="67" y1="47" x2="73" y2="47" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="67" y1="54" x2="73" y2="54" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M28 22 L28 10 L112 10 L112 22" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`,
+
+      'watch-round': `<svg viewBox="0 0 90 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="35" y="4" width="12" height="28" rx="6" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+        <rect x="35" y="98" width="12" height="28" rx="6" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+        <circle cx="46" cy="65" r="32" stroke="rgba(255,255,255,0.8)" stroke-width="2.5"/>
+        <circle cx="46" cy="65" r="26" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+        <line x1="80" y1="51" x2="80" y2="63" stroke="rgba(255,255,255,0.6)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="80" y1="68" x2="80" y2="76" stroke="rgba(255,255,255,0.35)" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="46" y1="43" x2="46" y2="65" stroke="rgba(255,255,255,0.75)" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="46" y1="65" x2="58" y2="73" stroke="rgba(255,255,255,0.65)" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="46" cy="65" r="3" fill="rgba(255,255,255,0.65)"/>
+        <circle cx="46" cy="37" r="1.8" fill="rgba(255,255,255,0.38)"/>
+        <circle cx="46" cy="93" r="1.8" fill="rgba(255,255,255,0.38)"/>
+        <circle cx="18" cy="65" r="1.8" fill="rgba(255,255,255,0.38)"/>
+        <circle cx="74" cy="65" r="1.8" fill="rgba(255,255,255,0.38)"/>
+      </svg>`,
+    };
+    return s[type] || s.laptop;
+  }
+
+  function getCategoryGradient(cat) {
+    const g = {
+      electronics: 'linear-gradient(140deg, #0c1929 0%, #152a48 60%, #0a1820 100%)',
+      audio:       'linear-gradient(140deg, #071c17 0%, #0d2e22 60%, #061510 100%)',
+      wearables:   'linear-gradient(140deg, #140d2c 0%, #231844 60%, #0e0b20 100%)',
+      gaming:      'linear-gradient(140deg, #1d0909 0%, #361010 60%, #140707 100%)',
+    };
+    return g[cat] || g.electronics;
+  }
+
+  const HEART_EMPTY = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12C7 12 1.5 8.2 1.5 4.8 1.5 2.8 3.1 1.4 4.8 1.4c1 0 1.9.5 2.2 1.4.3-.9 1.2-1.4 2.2-1.4C10.9 1.4 12.5 2.8 12.5 4.8 12.5 8.2 7 12 7 12Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>`;
+  const HEART_FILL  = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12C7 12 1.5 8.2 1.5 4.8 1.5 2.8 3.1 1.4 4.8 1.4c1 0 1.9.5 2.2 1.4.3-.9 1.2-1.4 2.2-1.4C10.9 1.4 12.5 2.8 12.5 4.8 12.5 8.2 7 12 7 12Z" fill="#f87171" stroke="#f87171" stroke-width="1.4" stroke-linejoin="round"/></svg>`;
+  const ICON_TRASH  = `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 3.5H12M5 3.5V2.5Q5 2 5.5 2H8.5Q9 2 9 2.5V3.5M3.5 3.5L4.5 12H9.5L10.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const ICON_CHECK  = `<svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5L6.5 11L12 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const ICON_WARN   = `<svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 2L13.5 13H1.5L7.5 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="7.5" y1="6" x2="7.5" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="7.5" cy="11" r="0.8" fill="currentColor"/></svg>`;
+  const ICON_CART   = `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M4 6H10L15 27H30L35 12H13" stroke="rgba(255,255,255,0.25)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="33" r="2.5" fill="rgba(255,255,255,0.25)"/><circle cx="29" cy="33" r="2.5" fill="rgba(255,255,255,0.25)"/></svg>`;
+  const ICON_SEARCH_BIG = `<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="17" cy="17" r="11" stroke="rgba(255,255,255,0.25)" stroke-width="2.5"/><path d="M25 25L35 35" stroke="rgba(255,255,255,0.25)" stroke-width="2.5" stroke-linecap="round"/></svg>`;
+
   // ── DATA ──
   const products = [
-    {
-      id: 1, name: 'MacBook Pro M3', category: 'electronics',
-      emoji: '💻', price: 1999, oldPrice: 2499,
-      rating: 4.9, reviews: 342, badge: 'hot',
-      desc: 'El portátil más potente de Apple con chip M3. Rendimiento extraordinario con hasta 22h de batería.',
-      specs: [
-        { label: 'Chip', value: 'Apple M3 Pro' },
-        { label: 'RAM', value: '18GB Unificada' },
-        { label: 'Almacenamiento', value: '512GB SSD' },
-        { label: 'Pantalla', value: '14" Liquid Retina XDR' }
-      ]
-    },
-    {
-      id: 2, name: 'Sony WH-1000XM5', category: 'audio',
-      emoji: '🎧', price: 299, oldPrice: 399,
-      rating: 4.8, reviews: 1240, badge: 'sale',
-      desc: 'Los mejores auriculares con cancelación de ruido del mercado. Sonido Hi-Res y 30h de batería.',
-      specs: [
-        { label: 'Conexión', value: 'Bluetooth 5.2' },
-        { label: 'Batería', value: '30 horas' },
-        { label: 'Cancelación ruido', value: 'ANC mejorado' },
-        { label: 'Peso', value: '250g' }
-      ]
-    },
-    {
-      id: 3, name: 'iPhone 16 Pro', category: 'electronics',
-      emoji: '📱', price: 1179, oldPrice: null,
-      rating: 4.7, reviews: 892, badge: 'new',
-      desc: 'El iPhone más avanzado con chip A18 Pro, cámara de 48MP y pantalla ProMotion de 120Hz.',
-      specs: [
-        { label: 'Chip', value: 'A18 Pro' },
-        { label: 'Cámara', value: '48MP + 12MP + 12MP' },
-        { label: 'Pantalla', value: '6.3" Super Retina XDR' },
-        { label: 'Almacenamiento', value: '256GB' }
-      ]
-    },
-    {
-      id: 4, name: 'Apple Watch Ultra 2', category: 'wearables',
-      emoji: '⌚', price: 799, oldPrice: 899,
-      rating: 4.6, reviews: 456, badge: 'hot',
-      desc: 'El smartwatch más resistente de Apple. Diseñado para deportistas de élite con GPS de doble frecuencia.',
-      specs: [
-        { label: 'Pantalla', value: '49mm LTPO OLED' },
-        { label: 'Batería', value: '60 horas GPS' },
-        { label: 'Resistencia', value: '100m submarino' },
-        { label: 'Chip', value: 'S9 SiP doble núcleo' }
-      ]
-    },
-    {
-      id: 5, name: 'PlayStation 5 Slim', category: 'gaming',
-      emoji: '🎮', price: 449, oldPrice: 549,
-      rating: 4.9, reviews: 2150, badge: 'sale',
-      desc: 'La consola de Sony con SSD ultrarrápido, gráficos 4K/120fps y DualSense con feedback háptico.',
-      specs: [
-        { label: 'Procesador', value: 'AMD Zen 2 8-core' },
-        { label: 'GPU', value: '10.28 TFLOPs RDNA 2' },
-        { label: 'Almacenamiento', value: '1TB SSD personalizado' },
-        { label: 'Resolución', value: '4K @ 120fps' }
-      ]
-    },
-    {
-      id: 6, name: 'iPad Pro M4', category: 'electronics',
-      emoji: '📟', price: 1099, oldPrice: null,
-      rating: 4.8, reviews: 567, badge: 'new',
-      desc: 'La tablet más delgada de la historia con pantalla OLED ultrabrillante y chip M4.',
-      specs: [
-        { label: 'Chip', value: 'Apple M4' },
-        { label: 'Pantalla', value: '13" Ultra Retina XDR OLED' },
-        { label: 'Almacenamiento', value: '256GB' },
-        { label: 'Cámaras', value: '12MP + 12MP Ultra Wide' }
-      ]
-    },
-    {
-      id: 7, name: 'AirPods Pro 2', category: 'audio',
-      emoji: '🎵', price: 249, oldPrice: 299,
-      rating: 4.7, reviews: 3421, badge: null,
-      desc: 'ANC activo adaptable, audio Lossless con Bluetooth y estuche recargable MagSafe.',
-      specs: [
-        { label: 'ANC', value: 'Activo Adaptable' },
-        { label: 'Batería', value: '30h total estuche' },
-        { label: 'Audio', value: 'Lossless / Espacial' },
-        { label: 'Chip', value: 'H2' }
-      ]
-    },
-    {
-      id: 8, name: 'Samsung Galaxy Ring', category: 'wearables',
-      emoji: '💍', price: 399, oldPrice: null,
-      rating: 4.3, reviews: 189, badge: 'new',
-      desc: 'El primer anillo inteligente de Samsung. Monitorización de salud 24/7 con batería de 7 días.',
-      specs: [
-        { label: 'Sensores', value: 'PPG + Acelerómetro' },
-        { label: 'Batería', value: '7 días' },
-        { label: 'Resistencia', value: '10ATM + IP68' },
-        { label: 'Material', value: 'Titanio + PVD' }
-      ]
-    },
-    {
-      id: 9, name: 'ASUS ROG Ally X', category: 'gaming',
-      emoji: '🕹️', price: 899, oldPrice: 1099,
-      rating: 4.5, reviews: 324, badge: 'sale',
-      desc: 'La consola portátil más potente. Ryzen Z1 Extreme, 24GB RAM y pantalla 1080p 120fps.',
-      specs: [
-        { label: 'CPU', value: 'AMD Ryzen Z1 Extreme' },
-        { label: 'RAM', value: '24GB LPDDR5' },
-        { label: 'Pantalla', value: '7" 1080p 120Hz' },
-        { label: 'Batería', value: '80Wh' }
-      ]
-    },
-    {
-      id: 10, name: 'Bose QuietComfort Ultra', category: 'audio',
-      emoji: '🔊', price: 429, oldPrice: 499,
-      rating: 4.6, reviews: 678, badge: null,
-      desc: 'Audio espacial inmersivo con ANC y EQ adaptativo. El referente en cancelación de ruido.',
-      specs: [
-        { label: 'Audio', value: 'Espacial Inmersivo' },
-        { label: 'Batería', value: '24h ANC activo' },
-        { label: 'Conexión', value: 'Bluetooth 5.3 + jack' },
-        { label: 'ANC', value: 'CustomTune adaptativo' }
-      ]
-    },
-    {
-      id: 11, name: 'Meta Quest 3', category: 'gaming',
-      emoji: '🥽', price: 549, oldPrice: 599,
-      rating: 4.4, reviews: 892, badge: null,
-      desc: 'La mejor headset de realidad mixta. Procesador Snapdragon XR2 Gen 2 y 4K pancake.',
-      specs: [
-        { label: 'Chip', value: 'Snapdragon XR2 Gen 2' },
-        { label: 'Pantalla', value: '2064×2208 por ojo' },
-        { label: 'Memoria', value: '8GB RAM + 512GB' },
-        { label: 'Batería', value: '2.5-3h uso activo' }
-      ]
-    },
-    {
-      id: 12, name: 'Garmin Fenix 7X', category: 'wearables',
-      emoji: '🏃', price: 749, oldPrice: 899,
-      rating: 4.8, reviews: 1102, badge: 'sale',
-      desc: 'El reloj GPS multideporte definitivo. 28 días de batería, panel solar y topografías offline.',
-      specs: [
-        { label: 'Batería', value: '28d + solar' },
-        { label: 'GPS', value: 'Multi-band GNSS' },
-        { label: 'Pantalla', value: '1.4" MIP solar' },
-        { label: 'Resistencia', value: '100m MIL-STD-810' }
-      ]
-    }
+    { id: 1,  name: 'MacBook Pro M3',          type: 'laptop',      category: 'electronics', price: 1999, oldPrice: 2499, rating: 4.9, reviews: 342,  badge: 'hot',  desc: 'El portátil más potente de Apple con chip M3. Rendimiento extraordinario con hasta 22h de batería.', specs: [{label:'Chip',value:'Apple M3 Pro'},{label:'RAM',value:'18GB Unificada'},{label:'Almacenamiento',value:'512GB SSD'},{label:'Pantalla',value:'14" Liquid Retina XDR'}] },
+    { id: 2,  name: 'Sony WH-1000XM5',         type: 'headphones',  category: 'audio',       price: 299,  oldPrice: 399,  rating: 4.8, reviews: 1240, badge: 'sale', desc: 'Los mejores auriculares con cancelación de ruido del mercado. Sonido Hi-Res y 30h de batería.', specs: [{label:'Conexión',value:'Bluetooth 5.2'},{label:'Batería',value:'30 horas'},{label:'Cancelación ruido',value:'ANC mejorado'},{label:'Peso',value:'250g'}] },
+    { id: 3,  name: 'iPhone 16 Pro',           type: 'phone',       category: 'electronics', price: 1179, oldPrice: null,  rating: 4.7, reviews: 892,  badge: 'new',  desc: 'El iPhone más avanzado con chip A18 Pro, cámara de 48MP y pantalla ProMotion de 120Hz.', specs: [{label:'Chip',value:'A18 Pro'},{label:'Cámara',value:'48MP + 12MP + 12MP'},{label:'Pantalla',value:'6.3" Super Retina XDR'},{label:'Almacenamiento',value:'256GB'}] },
+    { id: 4,  name: 'Apple Watch Ultra 2',     type: 'watch-square',category: 'wearables',   price: 799,  oldPrice: 899,  rating: 4.6, reviews: 456,  badge: 'hot',  desc: 'El smartwatch más resistente de Apple. Diseñado para deportistas de élite con GPS de doble frecuencia.', specs: [{label:'Pantalla',value:'49mm LTPO OLED'},{label:'Batería',value:'60 horas GPS'},{label:'Resistencia',value:'100m submarino'},{label:'Chip',value:'S9 SiP doble núcleo'}] },
+    { id: 5,  name: 'PlayStation 5 Slim',      type: 'console',     category: 'gaming',      price: 449,  oldPrice: 549,  rating: 4.9, reviews: 2150, badge: 'sale', desc: 'La consola de Sony con SSD ultrarrápido, gráficos 4K/120fps y DualSense con feedback háptico.', specs: [{label:'Procesador',value:'AMD Zen 2 8-core'},{label:'GPU',value:'10.28 TFLOPs RDNA 2'},{label:'Almacenamiento',value:'1TB SSD personalizado'},{label:'Resolución',value:'4K @ 120fps'}] },
+    { id: 6,  name: 'iPad Pro M4',             type: 'tablet',      category: 'electronics', price: 1099, oldPrice: null,  rating: 4.8, reviews: 567,  badge: 'new',  desc: 'La tablet más delgada de la historia con pantalla OLED ultrabrillante y chip M4.', specs: [{label:'Chip',value:'Apple M4'},{label:'Pantalla',value:'13" Ultra Retina XDR OLED'},{label:'Almacenamiento',value:'256GB'},{label:'Cámaras',value:'12MP + 12MP Ultra Wide'}] },
+    { id: 7,  name: 'AirPods Pro 2',           type: 'earbuds',     category: 'audio',       price: 249,  oldPrice: 299,  rating: 4.7, reviews: 3421, badge: null,   desc: 'ANC activo adaptable, audio Lossless con Bluetooth y estuche recargable MagSafe.', specs: [{label:'ANC',value:'Activo Adaptable'},{label:'Batería',value:'30h total estuche'},{label:'Audio',value:'Lossless / Espacial'},{label:'Chip',value:'H2'}] },
+    { id: 8,  name: 'Samsung Galaxy Ring',     type: 'ring',        category: 'wearables',   price: 399,  oldPrice: null,  rating: 4.3, reviews: 189,  badge: 'new',  desc: 'El primer anillo inteligente de Samsung. Monitorización de salud 24/7 con batería de 7 días.', specs: [{label:'Sensores',value:'PPG + Acelerómetro'},{label:'Batería',value:'7 días'},{label:'Resistencia',value:'10ATM + IP68'},{label:'Material',value:'Titanio + PVD'}] },
+    { id: 9,  name: 'ASUS ROG Ally X',         type: 'handheld',    category: 'gaming',      price: 899,  oldPrice: 1099, rating: 4.5, reviews: 324,  badge: 'sale', desc: 'La consola portátil más potente. Ryzen Z1 Extreme, 24GB RAM y pantalla 1080p 120fps.', specs: [{label:'CPU',value:'AMD Ryzen Z1 Extreme'},{label:'RAM',value:'24GB LPDDR5'},{label:'Pantalla',value:'7" 1080p 120Hz'},{label:'Batería',value:'80Wh'}] },
+    { id: 10, name: 'Bose QuietComfort Ultra', type: 'headphones2', category: 'audio',       price: 429,  oldPrice: 499,  rating: 4.6, reviews: 678,  badge: null,   desc: 'Audio espacial inmersivo con ANC y EQ adaptativo. El referente en cancelación de ruido.', specs: [{label:'Audio',value:'Espacial Inmersivo'},{label:'Batería',value:'24h ANC activo'},{label:'Conexión',value:'Bluetooth 5.3 + jack'},{label:'ANC',value:'CustomTune adaptativo'}] },
+    { id: 11, name: 'Meta Quest 3',            type: 'vr',          category: 'gaming',      price: 549,  oldPrice: 599,  rating: 4.4, reviews: 892,  badge: null,   desc: 'La mejor headset de realidad mixta. Procesador Snapdragon XR2 Gen 2 y 4K pancake.', specs: [{label:'Chip',value:'Snapdragon XR2 Gen 2'},{label:'Pantalla',value:'2064×2208 por ojo'},{label:'Memoria',value:'8GB RAM + 512GB'},{label:'Batería',value:'2.5-3h uso activo'}] },
+    { id: 12, name: 'Garmin Fenix 7X',         type: 'watch-round', category: 'wearables',   price: 749,  oldPrice: 899,  rating: 4.8, reviews: 1102, badge: 'sale', desc: 'El reloj GPS multideporte definitivo. 28 días de batería, panel solar y topografías offline.', specs: [{label:'Batería',value:'28d + solar'},{label:'GPS',value:'Multi-band GNSS'},{label:'Pantalla',value:'1.4" MIP solar'},{label:'Resistencia',value:'100m MIL-STD-810'}] },
   ];
 
   let cart = JSON.parse(localStorage.getItem('nexus_cart') || '[]');
@@ -854,9 +934,9 @@
 
     const grid = document.getElementById('productGrid');
     if (filtered.length === 0) {
-      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text3)">
-        <div style="font-size:3rem;margin-bottom:1rem">🔍</div>
-        <p>No se encontraron productos</p>
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:4rem;color:var(--text3)">
+        ${ICON_SEARCH_BIG}
+        <p style="margin-top:1rem;font-size:0.9rem">No se encontraron productos</p>
       </div>`;
       return;
     }
@@ -865,45 +945,43 @@
       const inWishlist = wishlist.includes(p.id);
       const inCart = cart.find(c => c.id === p.id);
       const badgeHtml = p.badge ? `<span class="product-badge badge-${p.badge}">${p.badge}</span>` : '';
-      const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '☆' : '');
-      const oldPriceHtml = p.oldPrice ? `<span class="price-old">${p.oldPrice} €</span>` : '';
+      const starsNum = Math.floor(p.rating);
+      const stars = '★'.repeat(starsNum) + (p.rating % 1 >= 0.5 ? '★' : '').slice(0, 5 - starsNum);
+      const oldPriceHtml = p.oldPrice ? `<span class="price-old">${p.oldPrice.toLocaleString('es')} €</span>` : '';
       return `
         <div class="product-card" onclick="openDetail(${p.id})">
-          <div class="product-img">
+          <div class="product-img" style="background:${getCategoryGradient(p.category)}">
             ${badgeHtml}
-            <button class="wishlist-btn ${inWishlist ? 'active' : ''}" onclick="toggleWishlist(event, ${p.id})">${inWishlist ? '❤️' : '🤍'}</button>
-            ${p.emoji}
+            <button class="wishlist-btn ${inWishlist ? 'active' : ''}" onclick="toggleWishlist(event,${p.id})">${inWishlist ? HEART_FILL : HEART_EMPTY}</button>
+            <div class="product-img-svg">${getProductSVG(p.type)}</div>
           </div>
           <div class="product-info">
             <div class="product-cat">${p.category}</div>
             <div class="product-name">${p.name}</div>
             <div class="product-desc">${p.desc}</div>
             <div class="product-rating">
-              <span class="stars">${stars}</span>
-              <span class="rating-count">${p.rating} (${p.reviews.toLocaleString('es')})</span>
+              <span class="stars">${'★'.repeat(Math.floor(p.rating))}</span>
+              <span class="rating-count">${p.rating} &nbsp;(${p.reviews.toLocaleString('es')})</span>
             </div>
             <div class="product-footer">
               <div class="product-price">
                 <span class="price-current">${p.price.toLocaleString('es')} €</span>
                 ${oldPriceHtml}
               </div>
-              <button class="add-btn ${inCart ? 'added' : ''}" onclick="addToCart(event, ${p.id})">
-                ${inCart ? '✓ Añadido' : '+ Añadir'}
+              <button class="add-btn ${inCart ? 'added' : ''}" onclick="addToCart(event,${p.id})">
+                ${inCart ? 'Añadido' : 'Añadir'}
               </button>
             </div>
           </div>
-        </div>
-      `;
+        </div>`;
     }).join('');
   }
 
   // ── FILTERS ──
   function filterProducts(cat, navBtn, filterBtn) {
     currentFilter = cat;
-    // sync nav buttons
     document.querySelectorAll('.nav-center button').forEach(b => b.classList.remove('active'));
     if (navBtn) navBtn.classList.add('active');
-    // sync filter buttons
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     if (filterBtn) filterBtn.classList.add('active');
     else {
@@ -927,12 +1005,10 @@
     e.stopPropagation();
     const p = products.find(x => x.id === id);
     const existing = cart.find(c => c.id === id);
-    if (existing) { existing.qty++; }
-    else { cart.push({ id: p.id, name: p.name, emoji: p.emoji, category: p.category, price: p.price, qty: 1 }); }
-    saveCart();
-    updateCartUI();
-    renderProducts();
-    showToast(`${p.emoji} <strong>${p.name}</strong> añadido al carrito`);
+    if (existing) existing.qty++;
+    else cart.push({ id: p.id, name: p.name, type: p.type, category: p.category, price: p.price, qty: 1 });
+    saveCart(); updateCartUI(); renderProducts();
+    showToast(`<strong>${p.name}</strong> añadido al carrito`);
   }
 
   function removeFromCart(id) {
@@ -949,9 +1025,7 @@
   }
 
   function clearCart() {
-    cart = []; saveCart(); updateCartUI(); renderProducts();
-    document.getElementById('cartBody').innerHTML = '';
-    renderCartBody();
+    cart = []; saveCart(); updateCartUI(); renderProducts(); renderCartBody();
   }
 
   function updateCartUI() {
@@ -965,26 +1039,29 @@
     const body = document.getElementById('cartBody');
     const footer = document.getElementById('cartFooter');
     if (cart.length === 0) {
-      body.innerHTML = `<div class="cart-empty"><div class="empty-icon">🛒</div><p>Tu carrito está vacío</p></div>`;
-      footer.style.display = 'none';
-      return;
+      body.innerHTML = `<div class="cart-empty">
+        <div class="cart-empty-icon">${ICON_CART}</div>
+        <p>Tu carrito está vacío</p>
+      </div>`;
+      footer.style.display = 'none'; return;
     }
     body.innerHTML = cart.map(item => `
       <div class="cart-item">
-        <div class="cart-item-img">${item.emoji}</div>
+        <div class="cart-item-img" style="background:${getCategoryGradient(item.category)}">
+          <div class="cart-item-img-svg">${getProductSVG(item.type)}</div>
+        </div>
         <div class="cart-item-info">
           <div class="cart-item-name">${item.name}</div>
           <div class="cart-item-cat">${item.category}</div>
           <div class="cart-item-controls">
-            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+            <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
             <span class="qty-num">${item.qty}</span>
-            <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
-            <button class="cart-item-remove" onclick="removeFromCart(${item.id})">🗑 Eliminar</button>
+            <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+            <button class="cart-item-remove" onclick="removeFromCart(${item.id})">${ICON_TRASH} Eliminar</button>
           </div>
         </div>
         <div class="cart-item-price">${(item.price * item.qty).toLocaleString('es')} €</div>
-      </div>
-    `).join('');
+      </div>`).join('');
 
     const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
     document.getElementById('cartSubtotal').textContent = subtotal.toLocaleString('es') + ' €';
@@ -998,7 +1075,6 @@
     document.getElementById('cartDrawer').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-
   function closeCart() {
     document.getElementById('cartOverlay').classList.remove('open');
     document.getElementById('cartDrawer').classList.remove('open');
@@ -1011,15 +1087,13 @@
     const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
     document.getElementById('orderSummary').innerHTML = `
       <div class="os-title">Resumen del pedido</div>
-      ${cart.map(c => `<div class="os-item"><span>${c.emoji} ${c.name} ×${c.qty}</span><span>${(c.price * c.qty).toLocaleString('es')} €</span></div>`).join('')}
-      <div class="os-total"><span>Total</span><span>${subtotal.toLocaleString('es')} €</span></div>
-    `;
+      ${cart.map(c => `<div class="os-item"><span>${c.name} &times;${c.qty}</span><span>${(c.price * c.qty).toLocaleString('es')} €</span></div>`).join('')}
+      <div class="os-total"><span>Total</span><span>${subtotal.toLocaleString('es')} €</span></div>`;
     document.getElementById('checkoutForm').style.display = 'block';
     document.getElementById('checkoutSuccess').style.display = 'none';
     document.getElementById('checkoutOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-
   function closeCheckout() {
     document.getElementById('checkoutOverlay').classList.remove('open');
     document.body.style.overflow = '';
@@ -1033,14 +1107,12 @@
       el.classList.remove('error');
       if (!el.value.trim()) { el.classList.add('error'); valid = false; }
     });
-    if (!valid) { showToast('⚠️ Rellena todos los campos obligatorios'); return; }
-
+    if (!valid) { showToast('Rellena todos los campos obligatorios', 'warn'); return; }
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRe.test(document.getElementById('email').value)) {
       document.getElementById('email').classList.add('error');
-      showToast('⚠️ Email no válido'); return;
+      showToast('El email no es válido', 'warn'); return;
     }
-
     const orderId = 'NX-' + Date.now().toString(36).toUpperCase();
     document.getElementById('orderId').textContent = orderId;
     document.getElementById('checkoutForm').style.display = 'none';
@@ -1053,7 +1125,7 @@
   }
   function formatExpiry(el) {
     let v = el.value.replace(/\D/g, '').substring(0, 4);
-    if (v.length >= 3) v = v.substring(0,2) + '/' + v.substring(2);
+    if (v.length >= 3) v = v.substring(0, 2) + '/' + v.substring(2);
     el.value = v;
   }
 
@@ -1062,61 +1134,60 @@
     const p = products.find(x => x.id === id);
     const inCart = cart.find(c => c.id === p.id);
     document.getElementById('detailContent').innerHTML = `
-      <div class="detail-img">${p.emoji}</div>
+      <div class="detail-img" style="background:${getCategoryGradient(p.category)}">
+        <div class="detail-img-svg">${getProductSVG(p.type)}</div>
+      </div>
       <div class="detail-cat">${p.category}</div>
       <div class="detail-name">${p.name}</div>
       <div class="detail-desc">${p.desc}</div>
-      <div class="detail-specs">
-        ${p.specs.map(s => `
-          <div class="spec-item">
-            <div class="spec-label">${s.label}</div>
-            <div class="spec-value">${s.value}</div>
-          </div>
-        `).join('')}
+      <div class="detail-specs">${p.specs.map(s => `
+        <div class="spec-item">
+          <div class="spec-label">${s.label}</div>
+          <div class="spec-value">${s.value}</div>
+        </div>`).join('')}
       </div>
       <div class="detail-footer">
         <div>
           <div class="detail-price">${p.price.toLocaleString('es')} €</div>
           ${p.oldPrice ? `<div style="font-size:0.8rem;color:var(--text3);text-decoration:line-through">${p.oldPrice.toLocaleString('es')} €</div>` : ''}
         </div>
-        <button class="add-btn ${inCart ? 'added' : ''}" style="font-size:0.95rem;padding:0.65rem 1.5rem" onclick="addToCart(event, ${p.id}); closeDetail()">
-          ${inCart ? '✓ En el carrito' : '🛒 Añadir al carrito'}
+        <button class="add-btn ${inCart ? 'added' : ''}" style="font-size:0.9rem;padding:0.7rem 1.5rem" onclick="addToCart(event,${p.id});closeDetail()">
+          ${inCart ? 'En el carrito' : 'Añadir al carrito'}
         </button>
-      </div>
-    `;
+      </div>`;
     document.getElementById('detailOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-
   function closeDetail() {
     document.getElementById('detailOverlay').classList.remove('open');
     document.body.style.overflow = '';
   }
-  document.getElementById('detailOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closeDetail();
-  });
-  document.getElementById('checkoutOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closeCheckout();
-  });
+
+  document.getElementById('detailOverlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeDetail(); });
+  document.getElementById('checkoutOverlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeCheckout(); });
 
   // ── WISHLIST ──
   function toggleWishlist(e, id) {
     e.stopPropagation();
     const idx = wishlist.indexOf(id);
     if (idx >= 0) wishlist.splice(idx, 1);
-    else { wishlist.push(id); showToast('❤️ Añadido a favoritos'); }
+    else {
+      wishlist.push(id);
+      const p = products.find(x => x.id === id);
+      showToast(`<strong>${p.name}</strong> añadido a favoritos`);
+    }
     localStorage.setItem('nexus_wishlist', JSON.stringify(wishlist));
     renderProducts();
   }
 
   // ── TOAST ──
-  function showToast(html) {
+  function showToast(html, type = 'success') {
     const c = document.getElementById('toastContainer');
     const t = document.createElement('div');
-    t.className = 'toast success';
-    t.innerHTML = `<span class="toast-icon">✅</span><span>${html}</span>`;
+    t.className = `toast ${type}`;
+    t.innerHTML = `<span class="toast-icon-wrap">${type === 'warn' ? ICON_WARN : ICON_CHECK}</span><span>${html}</span>`;
     c.appendChild(t);
-    setTimeout(() => t.remove(), 3000);
+    setTimeout(() => t.remove(), 3200);
   }
 
   // ── INIT ──
